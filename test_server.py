@@ -1,15 +1,15 @@
 import requests
 import argparse
 import time
-
-CEREBRIUM_ENDPOINT = "<your_cerebrium_endpoint_here>"
+import json
 
 def predict_image(image_path):
-    with open(image_path, 'rb') as img:
-        files = {'file': img}
-        response = requests.post(CEREBRIUM_ENDPOINT, files=files)
-        response.raise_for_status()
-        return response.json()
+    url = "http://localhost:8000/predict"
+    with open(image_path, "rb") as img_file:
+        files = {'file': img_file}
+        response = requests.post(url, files=files)
+    response.raise_for_status()
+    return response.json()
 
 def run_custom_tests():
     test_images = ["n01440764_tench.jpeg", "n01667114_mud_turtle.JPEG"]

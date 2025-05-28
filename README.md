@@ -87,7 +87,7 @@ The deployment configuration is defined in `cerebrium.toml`.
 ## Step 6: Test the Deployed Server
 
 1. After deployment, test the server using the provided endpoint URL:
-in `test_server.py` file. Past the URL in the CEREBRIUM_ENDPOINT = "<your_cerebrium_endpoint_here>"
+in `test_server.py` file. copy the URL in the CEREBRIUM_ENDPOINT = "<your_cerebrium_endpoint_here>"
 ```bash
 python test_server.py --image <Path to the image>
 ```
