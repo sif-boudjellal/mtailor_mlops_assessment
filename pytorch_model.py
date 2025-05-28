@@ -311,12 +311,19 @@ class Classifier(nn.Module):
 
 
 if __name__ == "__main__":
+    # Initialize the classifier model using BasicBlock and ResNet-18 configuration
     mtailor = Classifier(BasicBlock, [2, 2, 2, 2])
-    mtailor.load_state_dict(torch.load("./resnet18-f37072fd.pth"))
+    # Load the trained model weights from file
+    mtailor.load_state_dict(torch.load("pytorch_model_weights.pth"))
+    # Set the model to evaluation mode
     mtailor.eval()
     
-    img = Image.open("./n01667114_mud_turtle.JPEG")
+    # Open the test image
+    img = Image.open("n01667114_mud_turtle.JPEG")
+    # Preprocess the image and add a batch dimension
     inp = mtailor.preprocess_numpy(img).unsqueeze(0) 
+    # Perform a forward pass to get predictions
     res = mtailor.forward(inp)
 
+    # Print the predicted class index
     print(torch.argmax(res))
